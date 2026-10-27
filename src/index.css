@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Poppins', 'Barlow Condensed', sans-serif;
+    --font-body: 'Instrument Sans', 'Plus Jakarta Sans', sans-serif;
+    --font-hand: 'Caveat', cursive;
+    --font-script: 'Caveat', cursive;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: #faf9f6;
+    color: #111111;
+    overflow-x: hidden;
+  }
+
+  /* Silky smooth transitions on all interactive elements across entire site */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    transition-property: color, background-color, border-color, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    transition-duration: 250ms;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-hand {
+  font-family: var(--font-hand);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+/* Animations & smooth styling */
+@keyframes floatSlow {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+.animate-badge-float {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+@keyframes pageGlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: pageGlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.page-transition {
+  animation: pageGlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Mouse hover and interactive smoothness (Hardware Accelerated, No Jitter) */
+.smooth-hover {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.smooth-hover:hover {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 640px) {
+  .smooth-hover:hover {
+    transform: none;
+    /* Keep still on touch taps */
+  }
+}
+
+/* Hide scrollbar for smooth horizontal swiping on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Scrollbar in unified golden-yellow */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f5b014;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf9f6;
+}
