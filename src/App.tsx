@@ -35,7 +35,6 @@ export function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<PopularTab>('popular');
-  const [isNavigating, setIsNavigating] = useState(false);
 
   // Sync state with URL hash
   useEffect(() => {
@@ -61,24 +60,9 @@ export function App() {
     if (orderId) {
       setTrackOrderId(orderId);
     }
-
-    if (currentPage === page) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    // Gentle fade-out of current page to eliminate sharp cut
-    setIsNavigating(true);
-
-    setTimeout(() => {
-      setCurrentPage(page);
-      window.location.hash = page === 'home' ? '' : `#${page}`;
-      window.scrollTo({ top: 0, behavior: 'instant' });
-
-      requestAnimationFrame(() => {
-        setIsNavigating(false);
-      });
-    }, 130);
+    setCurrentPage(page);
+    window.location.hash = page === 'home' ? '' : `#${page}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Add to cart with instant confirmation and open drawer
@@ -151,15 +135,8 @@ export function App() {
         currentPage={currentPage === 'track' ? 'track' : currentPage === 'menu' ? 'menu' : 'home'}
       />
 
-      {/* ROUTED VIEWS WITH SMOOTH CROSSFADE & PAGE GLIDE */}
-      <div
-        key={currentPage}
-        className={`flex-1 flex flex-col transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isNavigating
-            ? 'opacity-0 -translate-y-1.5 pointer-events-none'
-            : 'opacity-100 translate-y-0 page-transition'
-        }`}
-      >
+      {/* ROUTED VIEWS WITH SMOOTH PAGE GLIDE */}
+      <div key={currentPage} className="page-transition flex-1 flex flex-col">
         {currentPage === 'menu' ? (
           <MenuPage
             onBackToHome={() => handleNavigate('home')}
