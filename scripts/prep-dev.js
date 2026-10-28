@@ -12,3 +12,4 @@ if (fs.existsSync(sourceHtml)) {
   fs.copyFileSync(sourceHtml, indexHtml)
   console.log('✅ Restored index.html from index.source.html for development.')
 }
+

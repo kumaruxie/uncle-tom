@@ -24,6 +24,7 @@ import {
   COMBO_DEALS,
   MENU_ITEMS,
   MenuItem,
+  getAssetUrl,
 } from './data/cafeData';
 
 type PopularTab = 'popular' | 'burgers' | 'pizzas' | 'pasta' | 'wraps' | 'shakes';
@@ -231,7 +232,7 @@ export function App() {
                     {/* Social Proof & Rating (Well-spaced, clean breathing room) */}
                     <div className="pt-2 sm:pt-3 flex flex-wrap items-center gap-3 sm:gap-4">
                       <div className="flex items-center gap-1.5 sm:gap-2">
-                        {['/images/avatar-1.jpg', '/images/avatar-2.jpg', '/images/avatar-3.jpg', '/images/avatar-4.jpg'].map((img, i) => (
+                        {[getAssetUrl('images/avatar-1.jpg'), getAssetUrl('images/avatar-2.jpg'), getAssetUrl('images/avatar-3.jpg'), getAssetUrl('images/avatar-4.jpg')].map((img, i) => (
                           <img
                             key={i}
                             src={img}
@@ -264,7 +265,7 @@ export function App() {
                   <div className="lg:col-span-5 relative flex items-center justify-center pt-2 lg:pt-0">
                     <div className="relative w-full max-w-[280px] sm:max-w-md">
                       <img
-                        src="/images/hero-combo.png"
+                        src={getAssetUrl('images/hero-combo.png')}
                         alt="Uncle Tom's Cafe Delicious Fast Food"
                         className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition duration-500 hover:scale-105"
                       />

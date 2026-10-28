@@ -66,3 +66,4 @@ fs.writeFileSync(path.join(rootDir, '.nojekyll'), '', 'utf-8')
 fs.writeFileSync(path.join(docsDir, '.nojekyll'), '', 'utf-8')
 
 console.log('✅ Successfully synchronized production build to root and docs!')
+
